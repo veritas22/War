@@ -1,0 +1,33 @@
+stages: 
+  - build
+  - test
+  - deploy
+
+variables:
+    OWNER_NAME   : Gabbazov
+    CICD_VERSION : v1.0
+
+build-job:
+  stage: build
+  script:
+    - docker build -t gamer ./MicroService/Gamer
+
+
+test-job:
+  stage: test
+  image: mcr.microsoft.com/dotnet/sdk:9.0
+  script:
+    - dotnet restore MicroService/Gamer/src/Test/TestNeuro/TestNeuro.csproj
+    - dotnet build MicroService/Gamer/src/Test/TestNeuro/TestNeuro.csproj
+    - dotnet test MicroService/Gamer/src/Test/TestNeuro/TestNeuro.csproj --no-build --logger:"junit;LogFileName=testresults.xml"
+  artifacts:
+    when: always
+    reports:
+      junit: testresults.xml
+    expire_in: 1 hour
+
+deploy-job:
+  stage: deploy 
+  environment: production
+  script:
+    - docker-compose -f docker-compose.yml up -d

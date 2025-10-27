@@ -1,0 +1,30 @@
+name: Run .NET Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0'
+
+      - name: Restore dependencies
+        run: dotnet restore MicroService/Gamer/Gamer.sln
+
+      - name: Build
+        run: dotnet build MicroService/Gamer/Gamer.sln --no-restore --configuration Release
+
+      - name: Run tests
+        run: dotnet test MicroService/Gamer/src/Test/TestNeuro/TestNeuro.csproj --verbosity normal

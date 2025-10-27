@@ -1,0 +1,7 @@
+
+
+services:
+  gamer: 
+    image: gabbazovr/gamer:latest
+    container_name: gamer
+
