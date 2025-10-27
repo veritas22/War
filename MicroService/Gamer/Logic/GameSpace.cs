@@ -16,7 +16,7 @@ namespace Logic
         public int Angle { get; set; }
     }
 
-    public class Point
+    public record Point
     {
         public int PositionX { get; set; }
         public int PositionY { get; set; }

@@ -13,13 +13,14 @@ namespace TestNeuro
         {
             //Assign 
             var solve = new GameSpace();
+            solve.Point = new Point() { PositionX = 12, PositionY = 5 };
             var move = new MovableAdapter(solve);
             //Act 
-            move.SetPosition(new Point() {PositionX = 2 , PositionY = 3 });
+            move.SetPosition(new Point() {PositionX = -7 , PositionY = 3 });
 
 
             // Assert
-            Assert.NotNull(move);
+            Assert.Equal(solve.Point, new Point() { PositionX = 5, PositionY = 8 });
         }
 
         [Fact]
@@ -29,11 +30,11 @@ namespace TestNeuro
             var solve = new GameSpace();
             var move = new RotatableAdapter(solve);
             //Act 
-            move.SetAngle(20);
+            move.SetAngle(360);
 
 
             // Assert
-            Assert.NotNull(move);
+            Assert.Equal(solve.Angle, 360);
         }
     }
 }

@@ -27,4 +27,4 @@ jobs:
         run: dotnet build MicroService/Gamer/Gamer.sln --no-restore --configuration Release
 
       - name: Run tests
-        run: dotnet test MicroService/Gamer/src/Test/TestNeuro/TestNeuro.csproj --verbosity normal
+        run: dotnet test MicroService/Gamer/src/Test/TestNeuro/Test.csproj --verbosity normal
