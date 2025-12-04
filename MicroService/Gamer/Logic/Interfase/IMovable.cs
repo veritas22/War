@@ -14,6 +14,8 @@ namespace Logic.Interfase
 
         public Point GetPosition();
 
+        public Point GetVelocity();
+
         public void SetPosition(Point point);
     }
 
